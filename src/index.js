@@ -15,7 +15,29 @@ const SignupForm = () => {
   });
   return (
     <form onSubmit={formik.handleSubmit}>
-      <label htmlFor="email">Email Address</label>
+        
+        {/* First Name Input */}
+      <label htmlFor="firstName">First Name</label>
+      <input
+        id="firstName"
+        name="firstName"
+        type="text"
+        onChange={formik.handleChange}
+        value={formik.values.firstName}
+      />
+       
+       {/* Last Name Input */}
+       <label htmlFor="lastName">Last Name</label>
+      <input
+        id="lastName"
+        name="lastName"
+        type="text"
+        onChange={formik.handleChange}
+        value={formik.values.lastName}
+      />
+
+       {/* Email Input */}
+       <label htmlFor="email">Email Address</label>
       <input
         id="email"
         name="email"
