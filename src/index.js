@@ -5,7 +5,10 @@ import "./styles.css";
 
 const SignupForm = () => {
   const formik = useFormik({
-    initialValues: { email: "" },
+    initialValues: { 
+        firstName: "",
+        lastName: "",
+        email: "" },
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
     },
