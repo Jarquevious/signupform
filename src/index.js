@@ -41,7 +41,7 @@ const SignupForm = () => {
   });
   return (
     <form onSubmit={formik.handleSubmit}>
-        
+        <h1>Subscibe!</h1>
         {/* First Name Input */}
       <label htmlFor="firstName">First Name</label>
       <input
@@ -49,9 +49,10 @@ const SignupForm = () => {
         name="firstName"
         type="text"
         onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         value={formik.values.firstName}
       />
-       {formik.errors.firstName ? <div>{formik.errors.firstName}</div> : null}
+       {formik.touched.firstName && formik.errors.firstName ? <div>{formik.errors.firstName}</div> : null}
        
        {/* Last Name Input */}
        <label htmlFor="lastName">Last Name</label>
@@ -60,9 +61,10 @@ const SignupForm = () => {
         name="lastName"
         type="text"
         onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         value={formik.values.lastName}
       />
-       {formik.errors.lastName ? <div>{formik.errors.lastName}</div> : null}
+       {formik.touched.lastName && formik.errors.lastName ? <div>{formik.errors.lastName}</div> : null}
 
 
        {/* Email Input */}
@@ -72,9 +74,10 @@ const SignupForm = () => {
         name="email"
         type="email"
         onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         value={formik.values.email}
       />
-       {formik.errors.email ? <div>{formik.errors.email}</div> : null}
+       {formik.touched.errors && formik.errors.email ? <div>{formik.errors.email}</div> : null}
 
       <button type="submit">Submit</button>
     </form>
