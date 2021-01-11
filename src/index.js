@@ -1,8 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Formik } from "formik";
+import { Formik, Form, useField, } from "formik";
 import * as Yup from "yup";
 import "./styles.css";
+
+const MyTextInput = ({ label, ...props }) => {
+  const [field, meta] = useField(props);
+  return (
+    <>
+      <label htmlFor={props.id || props.name}>{label}</label>
+      <input className="text-input" {...field} {...props} />
+      {meta.touched && meta.error ? ( 
+        <div className="error">{meta.error}</div>) : null}
+    </>    
+  );
+};
 
 const SignupForm = () => {
   return (
@@ -24,41 +36,36 @@ const SignupForm = () => {
         }, 400);
       }}
     >
-      {formik => (
-        <form onSubmit={formik.handleSubmit}>
-          <h1>Subscibe!</h1>
-          {/* First Name Input */}
-          <label htmlFor="firstName">First Name</label>
-          <input
-            id="firstName"
-            type="text"
-            {...formik.getFieldProps("firstName")}
-          />
-          {formik.touched.firstName && formik.errors.firstName ? (
-            <div>{formik.errors.firstName}</div>
-          ) : null}
+      <Form>
 
-          {/* Last Name Input */}
-          <label htmlFor="lastName">Last Name</label>
-          <input
-            id="lastName"
-            type="text"
-            {...formik.getFieldProps("lastName")}
-          />
-          {formik.touched.lastName && formik.errors.lastName ? (
-            <div>{formik.errors.lastName}</div>
-          ) : null}
+        {/* Title */}
+        <h1>Subscibe!</h1>
 
-          {/* Email Input */}
-          <label htmlFor="email">Email Address</label>
-          <input id="email" type="email" {...formik.getFieldProps("email")} />
-          {formik.touched.errors && formik.errors.email ? (
-            <div>{formik.errors.email}</div>
-          ) : null}
+        {/* First Name Input */}
+        <label htmlFor="firstName">First Name</label>
+        <Field name="firstName" type="text" />
+        <ErrorMessage name="firstName" />
+        
+        {/* Last Name Input */}
+        <label htmlFor="lastName">Last Name</label>
+        <Field name="lastName" type="text" />
+        <ErrorMessage name="lastName" />
 
-          <button type="submit">Submit</button>
-        </form>
-      )}
+        {/* Email Input */}
+        <label htmlFor="email">Email Address</label>
+        <Field name="email" type="email" />
+        <ErrorMessage name="email" />
+
+        <label htmlFor="colors">Select a color</label>
+        <Field name="colors" as="select" className="my-select">
+          <option value="red">Red</option>
+          <option value="green">Green</option>
+          <option value="blue">Blue</option>
+        </Field>
+    
+        {/* Submit Button */}
+        <button type="submit">Submit</button>
+      </Form>
     </Formik>
   );
 };
