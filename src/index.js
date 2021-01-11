@@ -42,16 +42,12 @@ const SignupForm = () => {
       />
        {formik.touched.lastName && formik.errors.lastName ? <div>{formik.errors.lastName}</div> : null}
 
-
        {/* Email Input */}
        <label htmlFor="email">Email Address</label>
       <input
         id="email"
-        name="email"
         type="email"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.email}
+        {...formik.getFieldProps('email')}
       />
        {formik.touched.errors && formik.errors.email ? <div>{formik.errors.email}</div> : null}
 
