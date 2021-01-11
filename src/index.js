@@ -4,6 +4,9 @@ import { Formik, Form, useField, } from "formik";
 import * as Yup from "yup";
 import "./styles.css";
 
+// Input primitive components
+
+// Text Input Component
 const MyTextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
@@ -16,6 +19,7 @@ const MyTextInput = ({ label, ...props }) => {
   );
 };
 
+// Checkbox Component
 const MyCheckbox = ({ children, ...props  }) => {
   const [field, meta] = useField({ ...props, type: 'checkbox' });
   return (
@@ -30,6 +34,7 @@ const MyCheckbox = ({ children, ...props  }) => {
   );
 };
 
+// Select Component
 const MySelect = ({ label, ...props }) => {
   const [field, meta] = useField(props); 
   return (
@@ -45,7 +50,7 @@ const MySelect = ({ label, ...props }) => {
 const SignupForm = () => {
   return (
     <Formik
-      initialValues={{ firstName: "", lastName: "", email: "" }}
+      initialValues={{ firstName: "", lastName: "", email: "", acceptedTerms: false, jobTyope: '' }}
       validationSchema={Yup.object({
         firstName: Yup.string()
           .max(15, "Must be 15 characters or less")
